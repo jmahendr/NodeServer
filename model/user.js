@@ -2,35 +2,37 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 
-var scheduleSchema = new Schema({
-
+var friendSchema = new Schema({
+  firstname: {
+    type: String,
+    required: true
+  },
+  lastname: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true
+  }
 });
-
-var drugSchema = new Schema({
-	name:{},
-	type:{},
-	strength:{},
-	unit:{},
-	shape:{},
-	colour:{},
-	schedule:[{status:String,
-			   duration:String,
-			   frequency:{}
-			  }]
-},{
-	timestamps: true
-});
-
-
 
 var userSchema = new Schema({
-	fisrtname:{},
-	lastname:{},
-	email:{},
-	friend:{},
-	drug:[drugSchema]
-},{
-	timestamps:true
+  firstname: {
+    type: String,
+    required: true
+  },
+  lastname: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true
+  },
+  friend: [friendSchema]
+}, {
+  timestamps: true
 });
 
-module.exports = mongoose.model('User',userSchema);
+module.exports = mongoose.model('User', userSchema);
