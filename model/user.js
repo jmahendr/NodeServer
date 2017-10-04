@@ -30,7 +30,7 @@ var userSchema = new Schema({
     type: String,
     required: true
   },
-  friend: [friendSchema]
+  friend: [friendSchema]	
 }, {
   timestamps: true
 });

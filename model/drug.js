@@ -1,11 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-
-var scheduleSchema = new Schema({
-
-});
-
 var drugSchema = new Schema({
   user: {
     type: Schema.ObjectId,
@@ -26,7 +21,7 @@ var drugSchema = new Schema({
   },
   unit: {
     type: String,
-    enum: ['mg', 'g', 'IU', 'ml']
+    enum: ['mg', 'g', 'IU', 'ml', 'nos']
   },
   shape: {
     type: String,
@@ -34,12 +29,15 @@ var drugSchema = new Schema({
   },
   colour: {
     type: String,
+    enum:['White', 'Black', 'Orange', 'Blue', 'Red'],
     default: 'White'
   },
   schedule: [{
     status: String,
-    duration: String,
-    frequency: {}
+    duration: Number,
+    durationUnit: {type: String, enum: ['Days','Week', 'Month']},
+    frequency: {everyNdays: Number, dayOfWeek:[Number]},
+    dosage: {timesDaily: Number, timesDailySeconds:[Number], everyNHour: Number}
   }]
 }, {
   timestamps: true
