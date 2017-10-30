@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "seedData": "node ./populateDb  mongodb://10.177.149.182:27018/pill"
+    "seedData": "node ./populateDb"
   },
   "dependencies": {
     "assert": "^1.4.1",
