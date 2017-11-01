@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<style>
+  .google-btn {
+    background-color: #f44336;
+    /* red */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+
+  nav {
+    background: #ff5353;
+    padding: 20px 10px;
+  }
+
+  nav ul {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  nav li {
+    list-style-type: none;
+    display: inline-block;
+    margin: 0 10px 0 0;
+  }
+
+  nav a {
+    color: #fff;
+    font-size: 18px;
+    background: rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+  }
+</style>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Login</title>
+</head>
+
+<body>
+  <nav>
+    <li><a href="/auth/logout">Logout</a></li>
+    <li><a href="auth/login">Login</a></li>
+    <li><a href="/">Home</a></li>
+  </nav>
+  <header>
+    <h1>Login using...</h1>
+  </header>
+  <main>
+    <a class="google-btn" href="/auth/google">Google+</a>
+  </main>
+</body>
+
+</html>
