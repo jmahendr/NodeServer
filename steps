@@ -1,6 +1,15 @@
-oauth:
-  launch console.developers.google.com
-  create a project.
-  search and enable Google+API
-  Create Credentials as webserver.
-  copy client id and secret.
+1. oauth:
+    launch console.developers.google.com
+    create a project.
+    search and enable Google+API
+    Create Credentials as webserver.
+    copy client id and secret.
+
+2. Creating Express App for NodeJs
+    npm init
+      # this initializes package.json
+    npm install express --save
+
+3. setup passport
+    npm install passport --save
+    npm install passport-google-oauth20

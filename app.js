@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var passportSetup = require('./config/passport-setup');
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 var auth = require('./routes/auth');
