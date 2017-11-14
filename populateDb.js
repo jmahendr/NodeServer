@@ -8,7 +8,7 @@ var User = require('./model/user');
 var keys = require('./config/keys');
 
 var mongoose = require('mongoose');
-mongoose.connect(keys.mongodb.dburi);
+mongoose.connect(keys.mongodb.clouddburi);
 var db = mongoose.connection;
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 

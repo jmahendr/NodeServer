@@ -18,6 +18,13 @@ var friendSchema = new Schema({
 });
 
 var userSchema = new Schema({
+  providerID: {
+    type: String  
+  },
+  provider: {
+      type: String,
+      enum: ['Google', 'Github'],
+  },
   firstname: {
     type: String,
     required: true
@@ -27,8 +34,7 @@ var userSchema = new Schema({
     required: true
   },
   email: {
-    type: String,
-    required: true
+    type: String
   },
   friend: [friendSchema]	
 }, {

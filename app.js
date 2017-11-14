@@ -11,7 +11,14 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var auth = require('./routes/auth');
 
+var mongoose = require('mongoose');
+var keys = require('./config/keys');
+
 var app = express();
+
+mongoose.connect(keys.mongodb.clouddburi, () => {
+    console.log('Connected to mongodb');
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
