@@ -17,17 +17,30 @@ passport.use(
     //need to retrieve the user and check in our mongodb
 
     console.log('Passport callback function fired.');
-    console.log(profile);
-    new User({
-        provider:'Google',
-        providerID: profile.id,
-        firstname: profile.name.givenName,
-        lastname: profile.name.familyName
-    }).save().then((newUser) => {
-        console.log('created new user: ' + newUser);
-    })
+    //console.log(profile);
+
+    //retrieve user from database
+    User.findOne({providerID:profile.id}).then((currentUser) => {
+
+      if(currentUser) {
+          console.console.log('Retrieved current user: ' + currentUser);
+      } else {
+          new User({
+              provider:'Google',
+              providerID: profile.id,
+              firstname: profile.name.givenName,
+              lastname: profile.name.familyName
+          }).save().then((newUser) => {
+              console.log('created new user: ' + newUser);
+          })//end of success of save
+          .catch((error) => {
+              console.log(error);
+          })//end of failure for save;
+      }
+    })//end of success for findOne
     .catch((error) => {
         console.log(error);
-    });
-  })
-)
+    })//end of failure for findOne;
+
+  })//end of  GoogleStrategy
+)//end of passport use
