@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var passport = require('passport');
 var passportSetup = require('./config/passport-setup');
 
 var index = require('./routes/index');
@@ -13,12 +14,24 @@ var auth = require('./routes/auth');
 
 var mongoose = require('mongoose');
 var keys = require('./config/keys');
+var cookieSession = require('cookie-session');
 
 var app = express();
+
+app.use(cookieSession({
+  maxAge: 24*60*60*1000, //a day as milliseconds
+  keys: [keys.session.cookieKey]
+}));
+
+//initialize passport  and make it use session cookie
+app.use(passport.initialize());
+app.use(passport.session());
 
 mongoose.connect(keys.mongodb.clouddburi, () => {
     console.log('Connected to mongodb');
 });
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

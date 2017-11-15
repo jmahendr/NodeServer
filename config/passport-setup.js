@@ -3,6 +3,22 @@ const GoogleStrategy = require('passport-google-oauth20');
 const keys = require('./keys');
 const User = require('../model/user');
 
+passport.serializeUser((user, done)=> {
+  console.log("in serialize user. The id is " + user.id);
+  done(null, user.id);
+});
+
+
+passport.deserializeUser((id, done)=> {
+  console.log("in deserialize user. The id is " + id);
+  User.findById(id).then((user) => {
+    done(null, user.id);
+  })
+  .catch((error) => {
+    console.log("error in deserialize. " + error);
+  });
+});
+
 passport.use(
   new GoogleStrategy({
     //options for google startegy
@@ -20,10 +36,11 @@ passport.use(
     //console.log(profile);
 
     //retrieve user from database
-    User.findOne({providerID:profile.id}).then((currentUser) => {
+    User.findOne({providerID:profile.id, provider:'Google'}).then((currentUser) => {
 
       if(currentUser) {
           console.console.log('Retrieved current user: ' + currentUser);
+          done(null, currentUser); //the done method will invoke the passport.serializeUser method
       } else {
           new User({
               provider:'Google',
@@ -32,6 +49,7 @@ passport.use(
               lastname: profile.name.familyName
           }).save().then((newUser) => {
               console.log('created new user: ' + newUser);
+              done(null, newUser); //the done method will invoke the passport.serializeUser method
           })//end of success of save
           .catch((error) => {
               console.log(error);
