@@ -42,10 +42,11 @@ router.get('/google', passport.authenticate('google', {
 //last function (req, resp, next) in our case, it will execute the callbck fn
 //defined in the google stragtegy defn, in root/config/passport-setup.js
 
-router.get('/google/redirect', passport.authenticate('google'), (req, resp) => {
-//router.get('/google/redirect',  (req, resp) => {
+//router.get('/google/redirect', passport.authenticate('google'), (req, resp) => {
+router.get('/google/redirect',  (req, resp) => {
   console.log('googleredirect invoked');
-  resp.send('reached callback uri');
+  //resp.send('reached callback uri');
+resp.redirect('/#!/medication');
 });
 
 module.exports = router;
