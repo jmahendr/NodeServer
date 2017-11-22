@@ -18,6 +18,8 @@ var cookieSession = require('cookie-session');
 
 var app = express();
 
+app.set('showStackError', true);
+
 app.use(cookieSession({
   maxAge: 24*60*60*1000, //a day as milliseconds
   keys: [keys.session.cookieKey]

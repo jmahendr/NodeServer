@@ -44,7 +44,7 @@ router.get('/google', passport.authenticate('google', {
 
 //router.get('/google/redirect', passport.authenticate('google'), (req, resp) => {
 router.get('/google/redirect',  (req, resp) => {
-  console.log('googleredirect invoked');
+  console.log('googleredirect invoked.');
   //resp.send('reached callback uri');
 resp.redirect('/#!/medication');
 });
